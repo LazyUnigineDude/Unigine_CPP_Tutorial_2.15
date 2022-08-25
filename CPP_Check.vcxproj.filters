@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="AppEditorLogic.cpp">
+      <Filter>_MainLoop</Filter>
+    </ClCompile>
+    <ClCompile Include="AppSystemLogic.cpp">
+      <Filter>_MainLoop</Filter>
+    </ClCompile>
+    <ClCompile Include="AppWorldLogic.cpp">
+      <Filter>_MainLoop</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>_MainLoop</Filter>
+    </ClCompile>
+    <ClCompile Include="SomeClass.cpp">
+      <Filter>Basics</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsController.cpp">
+      <Filter>PhysicsController</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraController.cpp">
+      <Filter>CameraController</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationState.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraFollower.cpp">
+      <Filter>CameraFollower</Filter>
+    </ClCompile>
+    <ClCompile Include="IntersectionRay.cpp">
+      <Filter>Intersection</Filter>
+    </ClCompile>
+    <ClCompile Include="DetectionRay.cpp">
+      <Filter>ShooterLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="ShooterAnim.cpp">
+      <Filter>ShooterLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertyChecker.cpp">
+      <Filter>Basics</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>ShooterLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthBar.cpp">
+      <Filter>ShooterLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="HUDMaker.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GunHandler.cpp">
+      <Filter>ShooterLogic</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AppEditorLogic.h">
+      <Filter>_MainLoop</Filter>
+    </ClInclude>
+    <ClInclude Include="AppSystemLogic.h">
+      <Filter>_MainLoop</Filter>
+    </ClInclude>
+    <ClInclude Include="AppWorldLogic.h">
+      <Filter>_MainLoop</Filter>
+    </ClInclude>
+    <ClInclude Include="SomeClass.h">
+      <Filter>Basics</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsController.h">
+      <Filter>PhysicsController</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraController.h">
+      <Filter>CameraController</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationState.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraFollower.h">
+      <Filter>CameraFollower</Filter>
+    </ClInclude>
+    <ClInclude Include="IntersectionRay.h">
+      <Filter>Intersection</Filter>
+    </ClInclude>
+    <ClInclude Include="DetectionRay.h">
+      <Filter>ShooterLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="ShooterAnim.h">
+      <Filter>ShooterLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertyChecker.h">
+      <Filter>Basics</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>ShooterLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthBar.h">
+      <Filter>ShooterLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="HUDMaker.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GunHandler.h">
+      <Filter>ShooterLogic</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="PhysicsController">
+      <UniqueIdentifier>{a200ce04-d09c-49ba-be0a-d6a055285417}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Basics">
+      <UniqueIdentifier>{14618cd8-50d4-432c-906b-1413b60213a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CameraController">
+      <UniqueIdentifier>{b800924d-1afa-4709-8938-37d269680eed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Animation">
+      <UniqueIdentifier>{e62a80d9-294e-448f-b10a-8663dcbc64ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_MainLoop">
+      <UniqueIdentifier>{380a4a36-ceb5-4154-abe5-0eba6af6a6b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CameraFollower">
+      <UniqueIdentifier>{c461e2f1-7287-4d4f-a91d-823e91074ff1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Intersection">
+      <UniqueIdentifier>{95453941-e488-43eb-bf8e-a5e68b7281c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ShooterLogic">
+      <UniqueIdentifier>{896ace4b-aea8-44bd-83ae-0dabd5695e0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{ccaeaef0-01aa-42dd-a16a-2b32e97bf0e0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="../utils/natvis/unigine_stl.natvis">
+      <Filter>_MainLoop</Filter>
+    </Natvis>
+  </ItemGroup>
+</Project>
