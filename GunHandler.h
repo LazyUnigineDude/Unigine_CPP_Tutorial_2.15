@@ -17,9 +17,7 @@ protected:
 private:
 
 	void Shoot(Unigine::Math::vec3& Lookat);
-	Unigine::NodeReferencePtr BulletPrefab;
 	Unigine::ObjectPtr Gun = nullptr;
 	float RateofFireTime = 0, RoF = 1;
 	bool isHolding = false;
 };
-

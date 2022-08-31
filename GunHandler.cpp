@@ -23,9 +23,7 @@ void GunHandler::GetGun(Unigine::ObjectPtr Gun) {
 }
 
 void GunHandler::Shoot(Unigine::Math::vec3& Lookat) {
-	
-	BulletPrefab = Unigine::NodeReference::create(Gun->getProperty(0)->getParameterPtr(0)->getValueFile());
-	Unigine::NodePtr _Bullet = Unigine::World::loadNode(BulletPrefab->getNodePath());
+	Unigine::NodePtr _Bullet = Unigine::World::loadNode(Gun->getProperty(0)->getParameterPtr(0)->getValueFile());
 	_Bullet->setWorldPosition(Gun.get()->getChild(0)->getWorldPosition());
 	_Bullet->worldLookAt(Lookat);
 
