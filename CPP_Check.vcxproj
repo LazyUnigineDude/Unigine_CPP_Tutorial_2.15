@@ -108,5 +108,8 @@
   <ItemGroup>
     <Natvis Include="../utils/natvis/unigine_stl.natvis" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
 </Project>

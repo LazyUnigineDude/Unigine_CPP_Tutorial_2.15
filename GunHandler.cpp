@@ -13,6 +13,7 @@ void GunHandler::Update()
 				Shoot(Unigine::Game::getPlayer()->getWorldPosition() + Unigine::Game::getPlayer()->getWorldDirection() * 100);
 			}
 		}
+		if (Unigine::Input::isKeyDown(Unigine::Input::KEY_R)) {Reload(); }
 	}
 }
 
@@ -20,9 +21,15 @@ void GunHandler::GetGun(Unigine::ObjectPtr Gun) {
 	this->Gun = Gun; 
 	isHolding = true;
 	RoF = Gun->getProperty(0)->getParameterPtr(2)->getValueInt();
+	CurrentBulletAmount = Gun->getProperty(0)->getParameterPtr(3)->getValueInt();
+	ReloadAmount = Gun->getProperty(0)->getParameterPtr(4)->getValueInt();
+
+	HUD = getComponent<HUDMaker>(GUNHUD);
+	Reload();
 }
 
 void GunHandler::Shoot(Unigine::Math::vec3& Lookat) {
+	if (AmountInGun > 0) {
 	Unigine::NodePtr _Bullet = Unigine::World::loadNode(Gun->getProperty(0)->getParameterPtr(0)->getValueFile());
 	_Bullet->setWorldPosition(Gun.get()->getChild(0)->getWorldPosition());
 	_Bullet->worldLookAt(Lookat);
@@ -32,7 +39,28 @@ void GunHandler::Shoot(Unigine::Math::vec3& Lookat) {
 
 	Unigine::BodyRigidPtr _BulletPhysics = _Bullet->getObjectBodyRigid();
 	_BulletPhysics->addLinearImpulse(_Bullet->getWorldDirection(Unigine::Math::AXIS_Y) * 100);
+	AmountInGun--;
+	HUD->UpdateGun(AmountInGun,CurrentBulletAmount);
+	}
+	else if (AmountInGun == 0) { Reload(); }
+}
 
+void GunHandler::Reload() {
+
+	int reload = ReloadAmount - AmountInGun;
+
+	if (CurrentBulletAmount == 0) { Unigine::Log::message("Empty\n"); }
+	else if (CurrentBulletAmount > reload)
+	{
+		CurrentBulletAmount -= reload;
+		AmountInGun += reload;
+	}
+	else if (CurrentBulletAmount < reload)
+	{
+		AmountInGun += CurrentBulletAmount;
+		CurrentBulletAmount = 0;
+	}
+	HUD->UpdateGun(AmountInGun, CurrentBulletAmount);
 }
 
 //void ShooterAnim::GetGun(Unigine::ObjectPtr Gun) {

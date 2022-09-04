@@ -137,4 +137,7 @@
       <Filter>_MainLoop</Filter>
     </Natvis>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
+  </ItemGroup>
 </Project>
