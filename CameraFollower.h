@@ -25,9 +25,9 @@ private:
 	Unigine::NodePtr MainCamera, ObjectFollow;
 	Unigine::Math::Vec3 NPoint;
 	Unigine::Math::Vec3 CPoint;
-	int HorInv, VerInv;
+	int HorInv = 1, VerInv = -1;
 
-	float Angle, Height, HeightValue, Weight, Radius, CamRadius, RotSpeedV, RotSpeedH, MinHeight, MaxHeight; 
+	float Angle = 0, Height = 0, HeightValue = 0, Weight = 0, Radius = 0, CamRadius = 0, RotSpeedV = 1, RotSpeedH = 1, MinHeight = 0, MaxHeight = 0; 
 	CAMERASTATE PREV_STATE = CAMERASTATE::Normal, STATE = CAMERASTATE::Normal;
 
 	void UpdateCamera();

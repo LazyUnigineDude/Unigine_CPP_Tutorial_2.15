@@ -7,6 +7,7 @@ void CameraFollower::Init() {
 	MainCamera = Parameter->getChild(0)->getValueNode();
 	ObjectFollow = Parameter->getChild(1)->getValueNode();
 	InvertCheck();
+	SetState(CAMERASTATE::Normal);
 }
 
 void CameraFollower::InvertCheck() {
@@ -27,7 +28,7 @@ void CameraFollower::Update() {
 	
 	if (isAiming) { SetState(CAMERASTATE::Aiming); }
 	else SetState(CAMERASTATE::Normal);
-
+	
 	LerpLayer(STATE);
 	UpdateCamera();
 }
