@@ -9,15 +9,10 @@ public:
 	COMPONENT_DEFINE(CameraFollower, ComponentBase)
 		COMPONENT_INIT(Init)
 		COMPONENT_UPDATE(Update)
-
-		PROP_PARAM(Node, Object_To_Follow)
-		PROP_PARAM(Node, Object_To_Rotate)
-		PROP_PARAM(Float, Radius, 2)
-		PROP_PARAM(Float, Rotation_Speed_Horizontal, 0.5f)
-		PROP_PARAM(Float, Rotation_Speed_Vertical, 0.5f)
-		PROP_PARAM(Vec2, Min_Max_Height, Unigine::Math::vec2(-0.5f, 4))
-
 		bool isAiming = false;
+		
+	enum CAMERASTATE { Normal, Aiming };
+	void SetState(CAMERASTATE STATE);
 
 protected:
 	void Init();
@@ -25,15 +20,19 @@ protected:
 
 private:
 
-	Unigine::PlayerPtr MainCamera;
-	Unigine::Math::ivec2 MousePosition;
+	Unigine::PropertyParameterPtr Parameter;
+
+	Unigine::NodePtr MainCamera, ObjectFollow;
 	Unigine::Math::Vec3 NPoint;
 	Unigine::Math::Vec3 CPoint;
+	int HorInv, VerInv;
 
-	float Angle;
-	float Height;
+	float Angle, Height, HeightValue, Weight, Radius, CamRadius, RotSpeedV, RotSpeedH, MinHeight, MaxHeight; 
+	CAMERASTATE PREV_STATE = CAMERASTATE::Normal, STATE = CAMERASTATE::Normal;
 
-	void Regular();
-	void Aiming();
+	void UpdateCamera();
+	void InvertCheck();
+	void LerpLayer(CAMERASTATE STATE);
+	void LerpValues(Unigine::PropertyParameterPtr PREV_STATE, Unigine::PropertyParameterPtr STATE);
 };
 

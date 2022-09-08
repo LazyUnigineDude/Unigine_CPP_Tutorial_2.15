@@ -5,7 +5,7 @@ REGISTER_COMPONENT(ShooterAnim)
 
 void ShooterAnim::ResetWeight() { isWeightChanged = true; if (isWeightChanged) { Weight = 0; isWeightChanged = false; } }
 
-void ShooterAnim::ChangeStateToEquipped() { State = SHOOTER_STATE::EQUIPPED; }
+void ShooterAnim::ChangeState(SHOOTER_STATE STATE) { if (State != STATE) { State = STATE; } }
 
 
 void ShooterAnim::ShooterState() {
@@ -25,7 +25,7 @@ void ShooterAnim::ShooterState() {
 		if (Unigine::Input::isMouseButtonDown(Unigine::Input::MOUSE_BUTTON_RIGHT)) {
 			State = SHOOTER_STATE::AIMED;
 			
-			CameraFollower* x = getComponent<CameraFollower>(node->getParent()->getParent());
+			CameraFollower* x = getComponent<CameraFollower>(CameraFollowerNode);
 			x->isAiming = true;
 		}
 
@@ -36,7 +36,7 @@ void ShooterAnim::ShooterState() {
 		if (Unigine::Input::isMouseButtonUp(Unigine::Input::MOUSE_BUTTON_RIGHT)) {
 			State = SHOOTER_STATE::EQUIPPED;
 
-			CameraFollower* x = getComponent<CameraFollower>(node->getParent()->getParent());
+			CameraFollower* x = getComponent<CameraFollower>(CameraFollowerNode);
 			x->isAiming = false;
 		}
 
@@ -132,6 +132,4 @@ void ShooterAnim::Update(){
 	Weight = Unigine::Math::clamp(Weight + Unigine::Game::getIFps(), 0.0f, 1.0f);
 
 	ShooterState();
-
-
 }

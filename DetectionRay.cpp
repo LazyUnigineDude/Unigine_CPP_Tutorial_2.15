@@ -13,8 +13,8 @@ void DetectionRay::Init(){
 void DetectionRay::Update() {
 
 	Unigine::ObjectPtr IObj = Unigine::World::getIntersection(
-		PointerNode.get()->getWorldPosition(),
-		CameraNode.get()->getWorldDirection() * 100,
+		CameraNode.get()->getWorldPosition(),
+		CameraNode.get()->getWorldPosition() + (CameraNode.get()->getWorldDirection() * 100),
 		0x00000002,
 		RayPtr
 	);
@@ -32,7 +32,7 @@ void DetectionRay::Update() {
 
 			// Change state to equipped
 			ShooterAnim* _temp = getComponent<ShooterAnim>(node->getChild(0)->getChild(0));
-			_temp->ChangeStateToEquipped();
+			_temp->ChangeState(_temp->EQUIPPED);
 			GunHandler* _gun = getComponent<GunHandler>(node->getChild(1));
 			_gun->GetGun(IObj);
 		}

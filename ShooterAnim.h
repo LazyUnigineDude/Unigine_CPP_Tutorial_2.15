@@ -8,12 +8,15 @@ public:
 	COMPONENT_DEFINE(ShooterAnim, ComponentBase)
 		COMPONENT_INIT(Init)
 		COMPONENT_UPDATE(Update)
+		PROP_PARAM(Node, CameraFollowerNode)
 		PROP_ARRAY(File, ANIM_NORMAL)
 		PROP_ARRAY(File, ANIM_EQUIP)
 		PROP_ARRAY(File, ANIM_AIM)
-		PROP_PARAM(File, GunShot_VFX)
+		enum SHOOTER_STATE { NORMAL, EQUIPPED, AIMED, _COUNT };
+
+
 		//PROP_PARAM(Toggle, isEquipped)
-		void ChangeStateToEquipped();
+		void ChangeState(SHOOTER_STATE STATE);
 
 protected:
 	void Init();
@@ -26,8 +29,7 @@ private:
 	bool isWeightChanged = false;
 
 	enum ANIMSTATES { IDLE, WALK, RUN, REVERSE_WALK, COUNT };
-	enum SHOOTER_STATE { NORMAL, EQUIPPED, AIMED, _COUNT };
-	
+
 
 	void ResetWeight();
 	void ChangeState(int SHOOTERSTATE);

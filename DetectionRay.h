@@ -10,7 +10,6 @@ public:
 		COMPONENT_DEFINE(DetectionRay, ComponentBase)
 		COMPONENT_INIT(Init)
 		COMPONENT_UPDATE(Update)
-		PROP_PARAM(Node, PointerNode)
 		PROP_PARAM(Node, CameraNode)	
 		
 		
