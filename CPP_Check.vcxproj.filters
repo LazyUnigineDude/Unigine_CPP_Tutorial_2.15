@@ -32,25 +32,31 @@
       <Filter>Intersection</Filter>
     </ClCompile>
     <ClCompile Include="DetectionRay.cpp">
-      <Filter>ShooterLogic</Filter>
+      <Filter>Shooter_Logic</Filter>
     </ClCompile>
     <ClCompile Include="ShooterAnim.cpp">
-      <Filter>ShooterLogic</Filter>
+      <Filter>Shooter_Logic</Filter>
     </ClCompile>
     <ClCompile Include="PropertyChecker.cpp">
       <Filter>Basics</Filter>
     </ClCompile>
     <ClCompile Include="Bullet.cpp">
-      <Filter>ShooterLogic</Filter>
+      <Filter>Shooter_Logic</Filter>
     </ClCompile>
     <ClCompile Include="HealthBar.cpp">
-      <Filter>ShooterLogic</Filter>
+      <Filter>Shooter_Logic</Filter>
     </ClCompile>
     <ClCompile Include="HUDMaker.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
     <ClCompile Include="GunHandler.cpp">
-      <Filter>ShooterLogic</Filter>
+      <Filter>Shooter_Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="ShooterAI.cpp">
+      <Filter>Shooter_AI</Filter>
+    </ClCompile>
+    <ClCompile Include="PathMaker.cpp">
+      <Filter>Basics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -82,25 +88,31 @@
       <Filter>Intersection</Filter>
     </ClInclude>
     <ClInclude Include="DetectionRay.h">
-      <Filter>ShooterLogic</Filter>
+      <Filter>Shooter_Logic</Filter>
     </ClInclude>
     <ClInclude Include="ShooterAnim.h">
-      <Filter>ShooterLogic</Filter>
+      <Filter>Shooter_Logic</Filter>
     </ClInclude>
     <ClInclude Include="PropertyChecker.h">
       <Filter>Basics</Filter>
     </ClInclude>
     <ClInclude Include="Bullet.h">
-      <Filter>ShooterLogic</Filter>
+      <Filter>Shooter_Logic</Filter>
     </ClInclude>
     <ClInclude Include="HealthBar.h">
-      <Filter>ShooterLogic</Filter>
+      <Filter>Shooter_Logic</Filter>
     </ClInclude>
     <ClInclude Include="HUDMaker.h">
       <Filter>GUI</Filter>
     </ClInclude>
     <ClInclude Include="GunHandler.h">
-      <Filter>ShooterLogic</Filter>
+      <Filter>Shooter_Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="ShooterAI.h">
+      <Filter>Shooter_AI</Filter>
+    </ClInclude>
+    <ClInclude Include="PathMaker.h">
+      <Filter>Basics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -125,11 +137,14 @@
     <Filter Include="Intersection">
       <UniqueIdentifier>{95453941-e488-43eb-bf8e-a5e68b7281c8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ShooterLogic">
-      <UniqueIdentifier>{896ace4b-aea8-44bd-83ae-0dabd5695e0c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GUI">
       <UniqueIdentifier>{ccaeaef0-01aa-42dd-a16a-2b32e97bf0e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shooter_Logic">
+      <UniqueIdentifier>{896ace4b-aea8-44bd-83ae-0dabd5695e0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shooter_AI">
+      <UniqueIdentifier>{60a5e773-0a7a-49d5-a671-70024943e088}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -82,8 +82,10 @@
     <ClCompile Include="HUDMaker.cpp" />
     <ClCompile Include="IntersectionRay.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PathMaker.cpp" />
     <ClCompile Include="PhysicsController.cpp" />
     <ClCompile Include="PropertyChecker.cpp" />
+    <ClCompile Include="ShooterAI.cpp" />
     <ClCompile Include="ShooterAnim.cpp" />
     <ClCompile Include="SomeClass.cpp" />
   </ItemGroup>
@@ -100,8 +102,10 @@
     <ClInclude Include="HealthBar.h" />
     <ClInclude Include="HUDMaker.h" />
     <ClInclude Include="IntersectionRay.h" />
+    <ClInclude Include="PathMaker.h" />
     <ClInclude Include="PhysicsController.h" />
     <ClInclude Include="PropertyChecker.h" />
+    <ClInclude Include="ShooterAI.h" />
     <ClInclude Include="ShooterAnim.h" />
     <ClInclude Include="SomeClass.h" />
   </ItemGroup>
