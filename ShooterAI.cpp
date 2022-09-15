@@ -47,7 +47,6 @@ void ShooterAI::AiState() {
 		Unigine::Log::message("AGRO\n");
 		if (!isInsideFrustum) { ChangeState(CurrentState::SEARCH); }
 		break;
-	default:
-		break;
+	default: break;
 	}
 }

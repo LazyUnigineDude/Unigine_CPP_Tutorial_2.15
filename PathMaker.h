@@ -20,6 +20,6 @@ private:
 	void RenderPath();
 	Unigine::SplineGraphPtr Path;
 	float Weight = 0;
-	int x, y, z, w, num = 0;
+	int num = 0;
 };
 

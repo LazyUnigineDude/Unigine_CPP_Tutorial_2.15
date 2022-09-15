@@ -56,7 +56,7 @@
       <Filter>Shooter_AI</Filter>
     </ClCompile>
     <ClCompile Include="PathMaker.cpp">
-      <Filter>Basics</Filter>
+      <Filter>Shooter_AI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -112,7 +112,7 @@
       <Filter>Shooter_AI</Filter>
     </ClInclude>
     <ClInclude Include="PathMaker.h">
-      <Filter>Basics</Filter>
+      <Filter>Shooter_AI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
