@@ -24,7 +24,7 @@ void PathMaker::MoveAlongPath() {
 Unigine::Math::vec3 PathMaker::GetCurrentPathPosition() 
 { return Path->calcSegmentPoint(num, Weight); }
 
-void PathMaker::ObjectToMove(Unigine::NodePtr Object) {
+void PathMaker::MoveObject(Unigine::NodePtr Object) {
 
 	Unigine::Math::vec3
 		Point = Path->calcSegmentPoint(num, Weight),

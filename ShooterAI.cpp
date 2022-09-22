@@ -1,17 +1,24 @@
 #include "ShooterAI.h"
 REGISTER_COMPONENT(ShooterAI)
 
+void ShooterAI::Init() {
+	
+	Path = getComponent<PathMaker>(PathMakerNode);
+}
+
 void ShooterAI::Update() {
 
+	// Calculate the Area, Position and Rotation
 	Unigine::Math::mat4 Frustum(Unigine::Math::perspective(40, 1.4f, 0.05, FieldDistance));
 		Unigine::Math::quat Rotation(node->getWorldRotation() * Unigine::Math::quat(90, 0, 0));
 		Unigine::Math::mat4 View(Rotation, node->getChild(0)->getWorldPosition());
 	
+		// Render
 		Unigine::Visualizer::renderFrustum(Frustum, View, Unigine::Math::vec4_black);
 		Unigine::Visualizer::renderVector(node->getWorldPosition(), node->getWorldPosition() + node->getWorldDirection(Unigine::Math::AXIS_Y) * 2, Unigine::Math::vec4_black);
 
+		// Logic
 		BFrustum = Unigine::Math::BoundFrustum(Frustum, Unigine::Math::inverse(View));
-
 		if (BFrustum.inside(MainCharacter->getWorldPosition())) {
 			isInsideFrustum = true;
 			float distance = Unigine::Math::distance(MainCharacter->getWorldPosition(), node->getWorldPosition());
