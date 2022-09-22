@@ -14,13 +14,6 @@ void PathMaker::InitPath() {
 	}
 }
 
-//void PathMaker::Update() {
-//
-//	MoveAlongPath();
-//	ObjectToMove(ObjToMove, num, Weight);
-//	RenderPath();
-//}
-
 void PathMaker::MoveAlongPath() {
 	
 	Weight = Unigine::Math::clamp(Weight += (Unigine::Game::getIFps() / DurationTime), 0.0f, 1.0f);
@@ -28,12 +21,15 @@ void PathMaker::MoveAlongPath() {
 	num %= Path->getNumPoints();
 }
 
-void PathMaker::ObjectToMove(Unigine::NodePtr Object, int Pos, float Time) {
+Unigine::Math::vec3 PathMaker::GetCurrentPathPosition() 
+{ return Path->calcSegmentPoint(num, Weight); }
+
+void PathMaker::ObjectToMove(Unigine::NodePtr Object) {
 
 	Unigine::Math::vec3
-		Point = Path->calcSegmentPoint(Pos, Time),
-		Dir = Path->calcSegmentTangent(Pos, Time),
-		Up = Path->calcSegmentUpVector(Pos, Time);
+		Point = Path->calcSegmentPoint(num, Weight),
+		Dir = Path->calcSegmentTangent(num, Weight),
+		Up = Path->calcSegmentUpVector(num, Weight);
 
 	Object->setWorldPosition(Point);
 	Object->setWorldDirection(Dir, Up, Unigine::Math::AXIS_Y);
@@ -65,6 +61,5 @@ void PathMaker::RenderPath() {
 
 			Unigine::Visualizer::renderLine3D(p0, p1, Unigine::Math::vec4_white);
 		}
-
 	}
 }

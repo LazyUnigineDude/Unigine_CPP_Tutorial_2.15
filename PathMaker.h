@@ -11,13 +11,15 @@ public:
 		PROP_ARRAY(Node, PathPoints)
 
 		void InitPath();
-		void ObjectToMove(Unigine::NodePtr Object, int Pos, float Time);
+		void ObjectToMove(Unigine::NodePtr Object);
 		void RenderPath();
 		void MoveAlongPath();
-		float Weight = 0;
-		int num = 0;
+		Unigine::Math::vec3 GetCurrentPathPosition();
+
 
 private:
 
+	float Weight = 0;
+	int num = 0;
 	Unigine::SplineGraphPtr Path;
 };
