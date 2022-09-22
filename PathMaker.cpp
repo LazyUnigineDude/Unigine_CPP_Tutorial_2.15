@@ -1,38 +1,42 @@
 #include "PathMaker.h"
 REGISTER_COMPONENT(PathMaker)
 
-void PathMaker::Init() {
+void PathMaker::InitPath() {
 
 	Path = Unigine::SplineGraph::create();
 
 	for (int i = 0; i < PathPoints.size();  i++) { Path->addPoint(PathPoints[i]->getWorldPosition()); }
-
-	Path->addSegment(0, PathPoints[0]->getWorldDirection(Unigine::Math::AXIS_Y), PathPoints[0]->getWorldDirection(Unigine::Math::AXIS_Z),
-					 1, PathPoints[1]->getWorldDirection(Unigine::Math::AXIS_NY), PathPoints[1]->getWorldDirection(Unigine::Math::AXIS_Z));
-	Path->addSegment(1, PathPoints[1]->getWorldDirection(Unigine::Math::AXIS_Y), PathPoints[1]->getWorldDirection(Unigine::Math::AXIS_Z),
-					 2, PathPoints[2]->getWorldDirection(Unigine::Math::AXIS_NY), PathPoints[2]->getWorldDirection(Unigine::Math::AXIS_Z));
-	Path->addSegment(2, PathPoints[2]->getWorldDirection(Unigine::Math::AXIS_Y), PathPoints[2]->getWorldDirection(Unigine::Math::AXIS_Z),
-					 3, PathPoints[3]->getWorldDirection(Unigine::Math::AXIS_NY), PathPoints[3]->getWorldDirection(Unigine::Math::AXIS_Z));
-	Path->addSegment(3, PathPoints[3]->getWorldDirection(Unigine::Math::AXIS_Y), PathPoints[3]->getWorldDirection(Unigine::Math::AXIS_Z),
-					 0, PathPoints[0]->getWorldDirection(Unigine::Math::AXIS_NY), PathPoints[0]->getWorldDirection(Unigine::Math::AXIS_Z));
-
+	for (int i = 0; i < PathPoints.size(); i++)
+	{
+		int num = i % Path->getNumPoints(), num2 = (i+1) % Path->getNumPoints();
+		Path->addSegment(num, PathPoints[num]->getWorldDirection(Unigine::Math::AXIS_Y), PathPoints[num]->getWorldDirection(Unigine::Math::AXIS_Z),
+						 num2, PathPoints[num2]->getWorldDirection(Unigine::Math::AXIS_NY), PathPoints[num2]->getWorldDirection(Unigine::Math::AXIS_Z));
+	}
 }
 
-void PathMaker::Update() {
+//void PathMaker::Update() {
+//
+//	MoveAlongPath();
+//	ObjectToMove(ObjToMove, num, Weight);
+//	RenderPath();
+//}
 
+void PathMaker::MoveAlongPath() {
+	
 	Weight = Unigine::Math::clamp(Weight += (Unigine::Game::getIFps() / DurationTime), 0.0f, 1.0f);
 	if (Weight == 1.0f) { Weight = 0; num++; }
 	num %= Path->getNumPoints();
+}
 
-	Unigine::Math::vec3 
-		Point = Path->calcSegmentPoint(num, Weight),
-		Dir	  = Path->calcSegmentTangent(num, Weight),
-		Up    = Path->calcSegmentUpVector(num, Weight);
+void PathMaker::ObjectToMove(Unigine::NodePtr Object, int Pos, float Time) {
 
-	ObjToMove->setWorldPosition(Point);
-	ObjToMove->setWorldDirection(Dir, Up, Unigine::Math::AXIS_Y);
+	Unigine::Math::vec3
+		Point = Path->calcSegmentPoint(Pos, Time),
+		Dir = Path->calcSegmentTangent(Pos, Time),
+		Up = Path->calcSegmentUpVector(Pos, Time);
 
-	RenderPath();
+	Object->setWorldPosition(Point);
+	Object->setWorldDirection(Dir, Up, Unigine::Math::AXIS_Y);
 }
 
 void PathMaker::RenderPath() { 
