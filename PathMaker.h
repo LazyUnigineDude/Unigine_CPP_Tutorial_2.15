@@ -15,7 +15,6 @@ public:
 		void MoveAlongPath();
 		Unigine::Math::vec3 GetCurrentPathPosition();
 
-
 private:
 
 	float Weight = 0;

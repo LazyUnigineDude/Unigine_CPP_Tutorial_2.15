@@ -23,6 +23,8 @@ protected:
 
 private:
 	void AiState();
+	void RotateTowards(Unigine::Math::Vec3 RotateTowards, Unigine::NodePtr Obj2Move, float RoatateSpeed);
+	void MoveTowards(Unigine::Math::Vec3 RotateTowards, Unigine::NodePtr Obj2Move);
 	CurrentState STATE  = CurrentState::IDLE;
 	float Weight = 0, DistanceFactor = 1;
 	int FieldDistance = 15;
