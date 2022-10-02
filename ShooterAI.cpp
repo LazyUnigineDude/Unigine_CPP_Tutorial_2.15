@@ -2,8 +2,11 @@
 REGISTER_COMPONENT(ShooterAI)
 
 void ShooterAI::Init() {
-	
+
 	Path = getComponent<PathMaker>(PathMakerNode);
+	Path->InitPath();
+	Health = getComponent<HealthBar>(node);
+	CurrentHealth = Health->GetHealth();
 }
 
 void ShooterAI::Update() {
@@ -31,6 +34,8 @@ void ShooterAI::Update() {
 
 void ShooterAI::AiState() {
 
+	if (CurrentHealth != Health->GetHealth()) { ChangeState(AGGRESSIVE); Weight = 1.0f; CurrentHealth = Health->GetHealth(); }
+
 	switch (STATE)
 	{
 	case ShooterAI::IDLE:
@@ -39,7 +44,7 @@ void ShooterAI::AiState() {
 		if (isInsideFrustum) { ChangeState(CurrentState::ALERT); }
 			if (Unigine::Math::distance(node->getWorldPosition(),Path->GetCurrentPathPosition()) > 0.1f) {
 				RotateTowards(Path->GetCurrentPathPosition(), node, 0.05f);
-				MoveTowards(Path->GetCurrentPathPosition(), node);
+				MoveTowards(Path->GetCurrentPathPosition(), node, 1);
 			}
 			else {
 				Path->MoveAlongPath();
@@ -59,12 +64,18 @@ void ShooterAI::AiState() {
 		if (Weight == 0.0f) { ChangeState(CurrentState::IDLE); }
 		if (isInsideFrustum) { ChangeState(CurrentState::AGGRESSIVE); Weight = 1; }
 			RotateTowards(MainCharacter->getWorldPosition(), node, 0.05f);
+			MoveTowards(MainCharacter->getWorldPosition(), node, 3);
 		break;
 	case ShooterAI::AGGRESSIVE:
 		//Unigine::Log::message("AGRO\n");
 		if (!isInsideFrustum) { ChangeState(CurrentState::SEARCH); }
 			RotateTowards(MainCharacter->getWorldPosition(), node, 0.05f);
-			MoveTowards(MainCharacter->getWorldPosition(), node);
+			MoveTowards(MainCharacter->getWorldPosition(), node, 5);
+			if (Unigine::Math::distance(node->getWorldPosition(), MainCharacter->getWorldPosition()) < 10.0f) { ChangeState(SHOOT); CurrentTime = Unigine::Game::getTime(); }
+		break;
+	case ShooterAI::SHOOT:
+			if (CurrentTime + 1 < Unigine::Game::getTime()) { Shoot(); ChangeState(AGGRESSIVE); }
+			RotateTowards(MainCharacter->getWorldPosition(), node, 0.02f);
 		break;
 	default: break;
 	}
@@ -79,12 +90,12 @@ void ShooterAI::RotateTowards(Unigine::Math::Vec3 RotateTowards, Unigine::NodePt
 	Obj2Move->rotate(-Obj2Move->getWorldRotation().x, -Obj2Move->getWorldRotation().y, Angle * RoatateSpeed);
 }
 
-void ShooterAI::MoveTowards(Unigine::Math::Vec3 RotateTowards, Unigine::NodePtr Obj2Move) {
+void ShooterAI::MoveTowards(Unigine::Math::Vec3 RotateTowards, Unigine::NodePtr Obj2Move, int Speed) {
 
 	Unigine::Math::Vec3 Pos = Unigine::Math::lerp(
 		Obj2Move->getWorldPosition(),
 		RotateTowards,
-		Unigine::Game::getIFps() /
+		Unigine::Game::getIFps() * Speed /
 		Unigine::Math::distance(Obj2Move->getWorldPosition(), RotateTowards));
 	Obj2Move->setWorldPosition(Pos);
 }

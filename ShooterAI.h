@@ -2,6 +2,7 @@
 #include <Unigine.h>
 #include <memory>
 #include "PathMaker.h"
+#include "HealthBar.h"
 
 class ShooterAI : public Unigine::ComponentBase {
 
@@ -13,7 +14,7 @@ public:
 		PROP_PARAM(Node, MainCharacter)
 		PROP_PARAM(Node, PathMakerNode)
 	
-	enum CurrentState{IDLE, ALERT, SEARCH, AGGRESSIVE};
+	enum CurrentState{IDLE, ALERT, SEARCH, AGGRESSIVE, SHOOT};
 	void ChangeState(CurrentState NEW_STATE) { if (STATE != NEW_STATE) { STATE = NEW_STATE; } }
 
 protected:
@@ -24,11 +25,13 @@ protected:
 private:
 	void AiState();
 	void RotateTowards(Unigine::Math::Vec3 RotateTowards, Unigine::NodePtr Obj2Move, float RoatateSpeed);
-	void MoveTowards(Unigine::Math::Vec3 RotateTowards, Unigine::NodePtr Obj2Move);
+	void MoveTowards(Unigine::Math::Vec3 RotateTowards, Unigine::NodePtr Obj2Move, int Speed);
 	CurrentState STATE  = CurrentState::IDLE;
-	float Weight = 0, DistanceFactor = 1;
-	int FieldDistance = 15;
+	float Weight = 0, DistanceFactor = 1, CurrentTime = 0;
+	int FieldDistance = 15, CurrentHealth;
+	void Shoot() { Unigine::Log::message("BAM!\n"); }
 
+	HealthBar* Health;
 	PathMaker* Path;
 
 	bool isInsideFrustum = false;
