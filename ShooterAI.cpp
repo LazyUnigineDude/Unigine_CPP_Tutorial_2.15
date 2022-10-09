@@ -71,7 +71,7 @@ void ShooterAI::AiState() {
 		if (!isInsideFrustum) { ChangeState(CurrentState::SEARCH); }
 			RotateTowards(MainCharacter->getWorldPosition(), node, 0.05f);
 			MoveTowards(MainCharacter->getWorldPosition(), node, 5);
-			if (Unigine::Math::distance(node->getWorldPosition(), MainCharacter->getWorldPosition()) < 10.0f) { ChangeState(SHOOT); CurrentTime = Unigine::Game::getTime(); }
+			if (Unigine::Math::distance(node->getWorldPosition(), MainCharacter->getWorldPosition()) < 20.0f) { ChangeState(SHOOT); CurrentTime = Unigine::Game::getTime(); }
 		break;
 	case ShooterAI::SHOOT:
 			if (CurrentTime + 1 < Unigine::Game::getTime()) { Shoot(); ChangeState(AGGRESSIVE); }
@@ -98,4 +98,17 @@ void ShooterAI::MoveTowards(Unigine::Math::Vec3 RotateTowards, Unigine::NodePtr 
 		Unigine::Game::getIFps() * Speed /
 		Unigine::Math::distance(Obj2Move->getWorldPosition(), RotateTowards));
 	Obj2Move->setWorldPosition(Pos);
+}
+
+void ShooterAI::Shoot() {
+
+	Unigine::NodePtr _Bullet = Unigine::World::loadNode(BulletPrefab.get());
+	_Bullet->setWorldPosition(node->getChild(0)->getWorldPosition());
+	_Bullet->worldLookAt(node->getWorldPosition() + node->getWorldDirection(Unigine::Math::AXIS_Y));
+
+	Bullet* bullet = getComponent<Bullet>(_Bullet);
+	bullet->setDamage(1);
+
+	Unigine::BodyRigidPtr _BulletPhysics = _Bullet->getObjectBodyRigid();
+	_BulletPhysics->addLinearImpulse(_Bullet->getWorldDirection(Unigine::Math::AXIS_Y) * 50);
 }
