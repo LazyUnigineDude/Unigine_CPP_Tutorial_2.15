@@ -13,6 +13,7 @@
 
 #include <UnigineComponentSystem.h>
 #include "AppSystemLogic.h"
+#include "UnigineApp.h"
 
 
 using namespace Unigine;

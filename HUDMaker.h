@@ -27,7 +27,7 @@ private:
 
 	HealthBar* MainCharacterHealth;
 
-	int Width, Height, CurrentHealth;
+	int Width = Unigine::App::getWidth(), Height = Unigine::App::getHeight(), CurrentHealth;
 	Unigine::GuiPtr GUI;
 	Unigine::WidgetCanvasPtr Canvas;
 	Unigine::WidgetSpritePtr Image;
