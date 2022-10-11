@@ -23,7 +23,7 @@ void CameraController::Init() {
 void CameraController::Update() {
 
 
-	MousePosition = Unigine::Input::getMouseDeltaPosition();
+	MousePosition = Unigine::Input::getMouseCoordDelta();
 
 	Angle += Invert_X * MousePosition.x * Unigine::Game::getIFps() * Rotation_Speed_Horizontal.get();
 
