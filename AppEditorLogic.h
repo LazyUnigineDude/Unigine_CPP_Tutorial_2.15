@@ -26,7 +26,7 @@ public:
 	int init() override;
 
 	int update() override;
-	int render() override;
+	int render(const Unigine::EngineWindowPtr& window) override;
 
 	int shutdown() override;
 
